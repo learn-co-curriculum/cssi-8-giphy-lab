@@ -16,16 +16,34 @@
 #
 import webapp2
 import urllib,json
-import random
+import jinja2
+import os
+
+jinja_environment = jinja2.Environment(loader=
+    jinja2.FileSystemLoader(os.path.dirname(__file__)))
+
+class SearchHandler(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_environment.get_template('templates/search.html')
+        self.response.out.write(template.render())
 
 class MainHandler(webapp2.RequestHandler):
-    def get(self):
-            parsed_data = json.loads(urllib.urlopen(
-            "http://api.giphy.com/v1/gifs/search?q=+ryan+goslin&api_key=dc6zaTOxFJmzC&limit=10").read())
+
+     def get(self):
+         base_url = "http://api.giphy.com/v1/gifs/search?q="
+         api_key_url = "&api_key=dc6zaTOxFJmzC&limit=10"
+         search_term=self.request.get('term')
+         if search_term:
+            url = base_url + search_term + api_key_url
+            parsed_data = json.loads(urllib.urlopen(url).read())
             gif_url = parsed_data['data'][0]['images']['original']['url']
-            self.response.write(gif_url)
+            template = jinja_environment.get_template('templates/results.html')
+            self.response.out.write(template.render({"search_term" : search_term, "url" : gif_url}))
+         else:
+            self.response.write(('Please enter a search term'))
 
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    ('/results', MainHandler),
+    ('/search', SearchHandler)
 ], debug=True)
