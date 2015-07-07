@@ -29,7 +29,7 @@ Now we can open our url by concatenating our variables together:
 Refresh your webapp page so that you know this first step is working. Remember, we always want to build and test one step at a time.
 
 #### Show the actual GIF
-Let's make this puppy show up. Use inline html and the `<img>` tag to add some styling and the actual gif appear. 
+Let's make this puppy show up. Use inline html and the `<img>` tag to add some styling and the actual gif appear. You will have to use string concatination to use your the `gif_url` variable 
 > Example: `self.response.out.write('<!doctype html><html><body><p>Hi there!</p></body></html>')`
 
 
@@ -38,12 +38,15 @@ Let's make this puppy show up. Use inline html and the `<img>` tag to add some s
 The next part of your lab is to make the search term dynamic. 
 
 * Use the get method to grab the search_term from the url.
-* `localhost:3030/?term='penguin'`  should pull up the a new url of a penguin gif.
+* Check if your app works, by navigating to `localhost:3030/?term='penguin'` Do you see a cute penguin?
+
+
+
 
 #### Deal with a url without a search term
 Add some conditional logic to main.py so that  `localhost:3030/` returns “Please enter a search term”
 
-#### Add a search page and a results page
+#### Add a search page 
 
 Finally, use your resources from the templating lessons to make a search.html and a results.html [Use the code/examples that you wrote yesterday to help you!]
 
@@ -55,9 +58,20 @@ Finally, use your resources from the templating lessons to make a search.html an
 		<p><input type="submit"></p>
 	</form>
    ```
-   
-* Under the self.get method of your handler, use the template.render() method to render that file.
+#### Render your search page as a template   
+Look at the templating lesson from yesterday to help you render a new html file - search.html. Some hints are below, but use your QuizApp from yesterday or the lecture notes to help you figure it out. 
+* Make a new handler, SearchHandler
+* Under the self.get method Search Handler, use the template.render() method to render that file.
+* You'll have to use jinja and import jinja2 and os 
+* Don't forget to change your libraries in app.yaml
+* Add to your routes so that `/search` goes to SearchHandler
+* Go to `http://localhost:8080/search` to make sure your new search page come up. 
+
+#### Create a results page
 * Create a new file, templates/results.html that displays the resulting gif.
+* Render results.html in the MainHandler, or you can rename MainHandler to ResultsHandler [and change the routes]
+* You will need to pass the template two variables: search_term and gif_url
+
 
 
 #### STRETCH 
