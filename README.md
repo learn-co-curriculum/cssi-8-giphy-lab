@@ -36,9 +36,20 @@ Add some conditional logic to main.py so that  `localhost:3030/` returns “Plea
 
 Finally, use your resources from the templating lessons to make a search.html and a results.html [Use the code/examples that you wrote yesterday to help you!]
 
-* Create a new file, templates/search.html with a form so that users can post their search term.
+* Create a new file, templates/search.html with a form so that users can enter their search term.
+  
+    ```
+    <form method="get" action=results>
+		<p>Question <input type="text" name="answer"/></p>
+		<p><input type="submit"></p>
+	</form>
+   ```
+   
 * Under the self.get method of your handler, use the template.render() method to render that file.
 * Create a new file, templates/results.html that displays the resulting gif.
+
+
+#### STRETCH - Use POST instead of GET for your form input
 * Make a new self.post method that uses the form variable from search.html and renders the results.html with the correct gif.
 
 
