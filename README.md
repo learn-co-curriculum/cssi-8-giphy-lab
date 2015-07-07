@@ -1,6 +1,12 @@
 ##Giphy Lab for Google CSSI Day 8
 
-First clone this repo so you have our starter code, which your MI has gone over.
+First clone this repo so you have our starter code. You should be familiar with the contents of main.py after today's lesson.
+
+Your goal during your lab time is to
+
+1. Actually show the gif using HTML
+2. Make the search term dynamic
+3. Add a search page so users can enter a search term
 
 ####Clean up the URL
 Let's break apart our long url intro three parts. 
@@ -19,8 +25,13 @@ class MainHandler(webapp2.RequestHandler):
 ```
 Now we can open our url by concatenating our variables together:
 `parsed_data = json.loads(urllib.urlopen(base_url + search_term + api_key_url).read())`
+
+Refresh your webapp page so that you know this first step is working. Remember, we always want to build and test one step at a time.
+
 #### Show the actual GIF
-Use inline html to add some styling and the actual gif appear. You’ll need to use the `<img>` tag.
+Let's make this puppy show up. Use inline html and the `<img>` tag to add some styling and the actual gif appear. 
+> Example: `self.response.out.write('<!doctype html><html><body><p>Hi there!</p></body></html>')`
+
 
 #### Get the search term from the user
 
@@ -49,7 +60,15 @@ Finally, use your resources from the templating lessons to make a search.html an
 * Create a new file, templates/results.html that displays the resulting gif.
 
 
-#### STRETCH - Use POST instead of GET for your form input
+#### STRETCH 
+#####Option 1: Use POST instead of GET for your form input
 * Make a new self.post method that uses the form variable from search.html and renders the results.html with the correct gif.
+
+#####Option 2: Get a random GIF
+Look at the [Giphy API Documentation](https://github.com/giphy/GiphyAPI) to find a way to get a JSON URL with a random gif
+
+or
+
+Import the [random library](https://docs.python.org/2/library/random.html) to make a random index. Instead of indexing the parsed_data at [0], index at [rand\_num]. Set the variable rand_num to be a random integer  from 1-10. 
 
 
