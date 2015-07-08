@@ -2,6 +2,25 @@
 
 First clone this repo so you have our starter code. You should be familiar with the contents of main.py after today's lesson.
 
+If you are having trouble cloning the repo, the boilplate code for main.py is below.
+```python
+import webapp2
+import urllib,json
+import random
+
+class MainHandler(webapp2.RequestHandler):
+    def get(self):
+            parsed_data = json.loads(urllib.urlopen(
+            "http://api.giphy.com/v1/gifs/search?q=+ryan+goslin&api_key=dc6zaTOxFJmzC&limit=10").read())
+            gif_url = parsed_data['data'][0]['images']['original']['url']
+            self.response.write(gif_url)
+
+
+app = webapp2.WSGIApplication([
+    ('/', MainHandler)
+], debug=True)
+```
+
 Your goal during your lab time is to
 
 1. Actually show the gif using HTML
