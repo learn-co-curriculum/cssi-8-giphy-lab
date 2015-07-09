@@ -10,8 +10,8 @@ import random
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-            parsed_data = json.loads(urllib.urlopen(
-            "http://api.giphy.com/v1/gifs/search?q=+ryan+goslin&api_key=dc6zaTOxFJmzC&limit=10").read())
+            parsed_data = json.loads(urlfetch.fetch(
+            "http://api.giphy.com/v1/gifs/search?q=+ryan+goslin&api_key=dc6zaTOxFJmzC&limit=10").content)
             gif_url = parsed_data['data'][0]['images']['original']['url']
             self.response.write(gif_url)
 
@@ -43,7 +43,7 @@ class MainHandler(webapp2.RequestHandler):
         search_term='puppy'
 ```
 Now we can open our url by concatenating our variables together:
-`parsed_data = json.loads(urllib.urlopen(base_url + search_term + api_key_url).read())`
+`parsed_data = json.loads(urlfetch.fetch(base_url + search_term + api_key_url).content)`
 
 Refresh your webapp page so that you know this first step is working. Remember, we always want to build and test one step at a time.
 
