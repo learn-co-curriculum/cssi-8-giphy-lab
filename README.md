@@ -5,20 +5,23 @@ First clone this repo so you have our starter code. You should be familiar with 
 If you are having trouble cloning the repo, the boilplate code for main.py is below.
 ```python
 import webapp2
-import urllib,json
+import json
 import random
+from google.appengine.api import urlfetch
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-            parsed_data = json.loads(urlfetch.fetch(
-            "http://api.giphy.com/v1/gifs/search?q=+ryan+goslin&api_key=dc6zaTOxFJmzC&limit=10").content)
-            gif_url = parsed_data['data'][0]['images']['original']['url']
+            giphy_data_source = urlfetch.fetch("http://api.giphy.com/v1/gifs/search?q=+ryan+goslin&api_key=dc6zaTOxFJmzC&limit=10")
+            giphy_json_content = giphy_data_source.content
+            parsed_giphy_dictionary = json.loads(giphy_json_content)
+            gif_url= parsed_giphy_dictionary['data'][0]['images']['original']['url']
             self.response.write(gif_url)
 
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
 ], debug=True)
+
 ```
 
 Your goal during your lab time is to
@@ -43,8 +46,8 @@ class MainHandler(webapp2.RequestHandler):
         search_term='puppy'
 ```
 Now we can open our url by concatenating our variables together:
-`parsed_data = json.loads(urlfetch.fetch(base_url + search_term + api_key_url).content)`
-
+`giphy_data_source = urlfetch.fetch(base_url + search_term + api_key_url).content)`
+            
 Refresh your webapp page so that you know this first step is working. Remember, we always want to build and test one step at a time.
 
 #### Show the actual GIF
