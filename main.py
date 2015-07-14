@@ -15,14 +15,16 @@
 # limitations under the License.
 #
 import webapp2
-import urllib,json
+import json
 import random
+from google.appengine.api import urlfetch
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-            parsed_data = json.loads(urllib.urlopen(
-            "http://api.giphy.com/v1/gifs/search?q=+ryan+goslin&api_key=dc6zaTOxFJmzC&limit=10").read())
-            gif_url = parsed_data['data'][0]['images']['original']['url']
+            giphy_data_source = urlfetch.fetch("http://api.giphy.com/v1/gifs/search?q=+ryan+goslin&api_key=dc6zaTOxFJmzC&limit=10")
+            giphy_json_content = giphy_data_source.content
+            parsed_giphy_dictionary = json.loads(giphy_json_content)
+            gif_url= parsed_giphy_dictionary['data'][0]['images']['original']['url']
             self.response.write(gif_url)
 
 
