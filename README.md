@@ -2,7 +2,7 @@
 
 First clone this repo so you have our starter code. You should be familiar with the contents of main.py after today's lesson.
 
-If you are having trouble cloning the repo, the boilplate code for main.py is below.
+If you are having trouble cloning the repo, the boilerplate code for main.py is below.
 ```python
 import webapp2
 import json
@@ -80,6 +80,7 @@ Finally, use your resources from the templating lessons to make a search.html an
 		<p><input type="submit"></p>
 	</form>
    ```
+   
 #### Render your search page as a template   
 Look at the templating lesson from yesterday to help you render a new html file - search.html. Some hints are below, but use your QuizApp from yesterday or the lecture notes to help you figure it out. 
 * Make a new handler, SearchHandler
