@@ -46,7 +46,7 @@ class MainHandler(webapp2.RequestHandler):
         search_term='puppy'
 ```
 Now we can open our url by concatenating our variables together:
-`giphy_data_source = urlfetch.fetch(base_url + search_term + api_key_url).content)`
+`giphy_data_source = urlfetch.fetch(base_url + search_term + api_key_url).content))`
             
 Refresh your webapp page so that you know this first step is working. Remember, we always want to build and test one step at a time.
 
