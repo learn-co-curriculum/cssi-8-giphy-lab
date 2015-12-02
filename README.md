@@ -109,3 +109,5 @@ or
 Import the [random library](https://docs.python.org/2/library/random.html) to make a random index. Instead of indexing the parsed_data at [0], index at [rand\_num]. Set the variable rand_num to be a random integer  from 1-10. 
 
 
+
+<a href='https://learn.co/lessons/cssi-8-giphy-lab' data-visibility='hidden'>View this lesson on Learn.co</a>
