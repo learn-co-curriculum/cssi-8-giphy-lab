@@ -110,4 +110,4 @@ Import the [random library](https://docs.python.org/2/library/random.html) to ma
 
 
 
-<a href='https://learn.co/lessons/cssi-8-giphy-lab' data-visibility='hidden'>View this lesson on Learn.co</a>
+<p data-visibility='hidden'>View <a href='https://learn.co/lessons/cssi-8-giphy-lab' title='Giphy Lab for Google CSSI Day 8'>Giphy Lab for Google CSSI Day 8</a> on Learn.co and start learning to code for free.</p>
